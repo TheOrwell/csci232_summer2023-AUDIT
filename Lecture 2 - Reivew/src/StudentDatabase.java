@@ -1,5 +1,5 @@
 
-// The class the represents a database and works with dateabases to holds student "objects"
+// The class the represents a database and works with databases to holds student "objects"
 public class StudentDatabase
 {
     private Student[] studentDatabase;
@@ -22,7 +22,7 @@ public class StudentDatabase
     {
         Student s = new Student(studentName, studentID, studentGPA);
 
-        // a temporary database that will dynamically resize, allowing the swappoing out and resizing of the old array
+        // a temporary database that will dynamically resize, allowing the swapping out and resizing of the old array
         Student[] tempDatabase = new Student[this.studentDatabase.length + 1];
         for (int i = 0; i < studentDatabase.length; i++)
         {
@@ -50,7 +50,7 @@ public class StudentDatabase
 
     public double findHighestGPA()
     {
-        // this var needs to not affect the asnwer if you switch it to a lowest_so_far method
+        // this var needs to not affect the answer if you switch it to a lowest_so_far method
         double highest_so_far = 0;
         for (Student s: this.studentDatabase)
         {
