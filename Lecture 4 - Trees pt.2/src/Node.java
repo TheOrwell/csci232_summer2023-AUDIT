@@ -1,5 +1,6 @@
 import java.util.ArrayList;
-public class Node {
+public class Node
+{
     private String name; // dir name
     private Node parent;
     private ArrayList<Node> children;
@@ -7,7 +8,7 @@ public class Node {
     public Node(String name)
     {
         this.name = name;
-        children = new ArrayList<Node>(); // This is not required due to inferrence
+        children = new ArrayList<Node>(); // This is not required due to inference
     }
 
     public String getName()
@@ -25,7 +26,7 @@ public class Node {
         return this.parent;
     }
 
-    // this gets called on a node obnject; it will atd  a child to that node's array list
+    // this gets called on a node object; it will atd  a child to that node's array list
     public void addChild(Node newChild)
     {
         this.children.add(newChild);

@@ -56,7 +56,7 @@ public class FileTree
     // This could be a boolean, if you wanted
     public void moveUp()
     {
-        // you don't need to provide the name fo the dir because there is always exactly 1 parent, ALWAYS
+        // you don't need to provide the name for the dir because there is always exactly 1 parent, ALWAYS
         // Check to see if you're in the edge case of moving up from the root directory
         if(current != root)
         {
@@ -84,7 +84,7 @@ public class FileTree
         ArrayList<Node> children = current.getChildren();
         for(Node c: children)
         {
-            files  += c.getName() + " ";
+            files += c.getName() + " ";
         }
         return files;
     }
@@ -97,8 +97,30 @@ public class FileTree
 
     public String getPath()
     {
-        // TODO CHALLENGE: find the root node by checking the parent of currnet with a while loop.
-        return "[METHOD NOT FILLED OUT]";
+        // TODO CHALLENGE: find the root node by checking the parent of current with a while loop.
+        String dirPath = "";
+
+        // your start in current dir
+         // THEN you call the parent.
+            // ADD the thing to your string
+            // IF the parent != null, call again
+
+
+            // AUTHOR: Isaac Yauk
+        dirPath += this.current.getName();
+            // While the parent of the current is not null iteratively loop you way back up, printing as you go
+            while (this.current.getParent() != null)
+            {
+                // if you haven't arrived at the root node yet
+                if (this.current != null)
+                {
+                    String nextName = this.current.getParent().getName();
+                    dirPath += "/" + this.current.getName();
+                }
+            }
+
+
+        return dirPath;
     }
 
     public void breadthFirst()
@@ -111,7 +133,7 @@ public class FileTree
         {
             queue.add(root);
 
-            // .isEmpty returns true if the queue is empyt; so: "while the queue is not empty, keep doing this action"
+            // .isEmpty returns true if the queue is empty; so: "while the queue is not empty, keep doing this action"
             while (!queue.isEmpty())
             {
                 // node is the node we are visiting

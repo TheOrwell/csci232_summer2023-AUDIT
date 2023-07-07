@@ -9,7 +9,6 @@ public class FileTreeManager
     {
         // calling aconstructor inside of a constuctor
         this.tree = new FileTree();
-
     }
 
     public void run()
@@ -28,33 +27,51 @@ public class FileTreeManager
     }
 
     // Copy pasted method that checks and executes the commands given by the user, and calls the correct commands accordingly
-    private void executeCommand(String command) {
+    private void executeCommand(String command)
+    {
         int breakPoint = command.indexOf(" ");
         String argument = null;
-        if (breakPoint != -1) {
+        if (breakPoint != -1)
+        {
             argument = command.substring(breakPoint + 1, command.length());
             command = command.substring(0, breakPoint);
         }
 
-        if (command.equals("cd")) {
-            if (!move(argument)) {
+        if (command.equals("cd"))
+        {
+            if (!move(argument))
+            {
                 System.out.println("cd: no such file or directory: " + argument + "\n");
             }
-        } else if (command.equals("ls")) {
+        }
+        else if (command.equals("ls"))
+        {
             System.out.println(tree.getChildrenDirectories());
-        } else if (command.equals("mkdir")) {
-            if (!tree.insert(argument)) {
+        }
+        else if (command.equals("mkdir"))
+        {
+            if (!tree.insert(argument))
+            {
                 System.out.println("Invalid file name.\n");
             }
-        } else if (command.equals("rm")) {
-            if (!tree.remove(argument)) {
+        }
+        else if (command.equals("rm"))
+        {
+            if (!tree.remove(argument))
+            {
                 System.out.println("File not found.\n");
             }
-        } else if (command.equals("exit")) {
+        }
+        else if (command.equals("exit"))
+        {
 
-        } else if (command.equals("pwd")) {
+        }
+        else if (command.equals("pwd"))
+        {
             System.out.println(tree.getPath());
-        } else {
+        }
+        else
+        {
             System.out.println("'" + command + "' is not a recognized command");
         }
     }
@@ -107,17 +124,20 @@ public class FileTreeManager
 
         //System.out.println("Depth First");
         //tree.depthFirst();
-        
+
         run();
     }
 
-    private boolean move(String file) {
-        if (file == null || file.equals("") || file.equals("~")) {
+    private boolean move(String file)
+    {
+        if (file == null || file.equals("") || file.equals("~"))
+        {
             tree.goHome();
             return true;
         }
 
-        if (file.equals("..")) {
+        if (file.equals(".."))
+        {
             tree.moveUp();
             return true;
         }
