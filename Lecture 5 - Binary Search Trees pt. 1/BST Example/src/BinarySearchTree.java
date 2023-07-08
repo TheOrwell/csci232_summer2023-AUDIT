@@ -8,7 +8,46 @@ public class BinarySearchTree
         root = null;
     }
 
-    
+    // TODO CHALLENGE: #1 Return the minimum value in the BST
+    public int getMin()
+    {
+        // HINT: You will never have to go right! Move left as far as possible!
+        // Return -1 if no values in the BST
+        return -1;
+    }
+
+    // TODO CHALLENGE: #2 Return the maximum value in the BST
+    public int getMax()
+    {
+        // HINT: You will never have to go left! Move right as far as possible!
+        // Return -1 if no values in the BST
+        return -1;
+    }
+
+    // TODO CHALLENGE #3 search through the tree and return the value that matches the one passed in
+    public Node find(int valToFind)
+    {
+        // DO NOT use depth first or breadth first to find the value! It must go from the root node to the parameter, just like insert() did
+        // return null if you didn't find it
+        return null;
+    }
+
+    public void depthFirstPrint(Node n)
+    {
+        // Base case; if the node 'n' is not null, it's something we can print out
+        if (n != null)
+        {
+            System.out.println(n.getValue());
+        }
+        else if (n == null)
+        {
+            // do nothing
+            return;
+        }
+        depthFirstPrint(n.getLeft());
+        depthFirstPrint(n.getRight());
+    }
+
     public void insert (int newValue)
     {
         // a check to make sure that you're not working with an empty tree
