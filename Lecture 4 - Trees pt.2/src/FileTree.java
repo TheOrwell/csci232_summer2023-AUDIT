@@ -95,32 +95,52 @@ public class FileTree
         return false;
     }
 
+    // AUTHOR: Isaac Yauk, 07/07/2023
+    // SOURCE: Nodes included in class and ChatGPT for string slicing examples.
+    /**
+     * Gets the path taken from the starting (or "root") directory by returning to the root, and
+     *      navigating back down to the directory in which the recording the path taken back down
+     *      command was run.
+     * @return the string of the path taken from the "root" node
+     */
     public String getPath()
     {
-        // TODO CHALLENGE: find the root node by checking the parent of current with a while loop.
-        String dirPath = "";
+        String dirUpPath = "";
+        String startDir = this.getCurrentLocation();
+        String pathFromHome = "";
 
-        // your start in current dir
-         // THEN you call the parent.
-            // ADD the thing to your string
-            // IF the parent != null, call again
+        dirUpPath += this.getCurrentLocation();
 
+        // Moves up to the root node, recording the path taken
+        while (!dirUpPath.contains(root.getName()))
+        {
+            moveUp();
+            dirUpPath = dirUpPath + "/" + this.getCurrentLocation();
+        }
 
-            // AUTHOR: Isaac Yauk
-        dirPath += this.current.getName();
-            // While the parent of the current is not null iteratively loop you way back up, printing as you go
-            while (this.current.getParent() != null)
+        // moves back down to original location, slicing off the recorded paths as the 'moveDown' parameter
+        while (this.getCurrentLocation() != startDir)
+        {
+            if (dirUpPath.contains("/"))
             {
-                // if you haven't arrived at the root node yet
-                if (this.current != null)
-                {
-                    String nextName = this.current.getParent().getName();
-                    dirPath += "/" + this.current.getName();
-                }
+                // Gets the index of the last '/' and then uses it to peel off the location taken, from within the string
+                int lastIndex = dirUpPath.lastIndexOf("/");
+                String moveLoc = dirUpPath.substring(lastIndex + 1);
+
+                // Moves down and constructs the return string on the way back
+                moveDown(moveLoc);
+                pathFromHome = pathFromHome + "/" + moveLoc;
+                dirUpPath = dirUpPath.substring(0, dirUpPath.lastIndexOf("/"));
             }
+            else
+            {
+                // The case in which there are no more '/' chars in the path taken
+                moveDown(dirUpPath);
+            }
+        }
 
-
-        return dirPath;
+        // The final return path (including the current directory), properly formatted.
+        return pathFromHome + "/" + getCurrentLocation();
     }
 
     public void breadthFirst()
