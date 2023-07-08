@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Stack;
 
 public class FileTree
 {
@@ -167,5 +168,33 @@ public class FileTree
                 }
             }
         }
+    }
+
+    public void depthFirst()
+    {
+        Stack<Node> stack = new Stack<Node>();
+
+        // If the root is not null, add it to the stack
+        if (root != null)
+        {
+            stack.add(current);
+
+            // keeps looping as lng as the stack has stuff inside it
+            while (!stack.isEmpty())
+            {
+                Node removedNode = stack.pop();
+                System.out.println(removedNode.getName());
+
+                // this gives you an array list that you can iterate through
+                for (Node child : removedNode.getChildren())
+                {
+                    // add the child to the stack
+                    stack.add(child);
+
+                }
+            }
+        }
+
+
     }
 }

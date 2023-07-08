@@ -122,8 +122,8 @@ public class FileTreeManager
         // TODO: Implement a search method for the commented section out below
         //tree.searchForDirectory("Tetons");
 
-        //System.out.println("Depth First");
-        //tree.depthFirst();
+        System.out.println("Depth First");
+        tree.depthFirst();
 
         run();
     }
